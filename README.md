@@ -5,6 +5,14 @@ Return a frieze pattern (finite or infinite) by specifiying the quiddity row, th
 If a "frieze row" contains a zero, the computation stops there.
 Otherwise, user specifies which row they would like to stop at.
 
+### How to use from terminal:
+1. Open Sage in terminal.
+2. Type: attach('path-to-folder/friezepattern/frieze.py')
+3. Alternatively, copy-all the frize.py file and paste into the terminal by typing %paste
+
+### How to use from notebook or sage math cloud:
+Copy-all the frize.py file and paste 
+
 ### Examples
 sage: matrix(frieze_mat((2,1,4,2,3),inputrow=15)).transpose() # From once-punctured pentagon trianguation
 
