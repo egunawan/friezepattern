@@ -7,8 +7,10 @@ Otherwise, user specifies which row they would like to stop at.
 
 ### How to use from terminal:
 1. Open Sage in terminal.
-2. Type: attach('path-to-folder/friezepattern/frieze.py')
-3. Alternatively, copy-all the frize.py file and paste into the terminal by typing %paste
+2. Type: 
+    `attach('path-to-folder/friezepattern/frieze.py')`
+3. Alternatively, copy-all the frize.py file and paste into the terminal by typing 
+   `%paste`
 
 ### How to use from notebook or sage math cloud:
     Copy-all the frize.py file and paste
