@@ -44,6 +44,27 @@ def frieze_mat(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8):
         #print '\n'
     return m
 
-print matrix(frieze_mat()).transpose()
+def print_frieze(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8):
+    m = frieze_mat(quiddity_row,inputcol,inputrow)
+    L = []
+    for friezerow in range(0,inputrow-inputcol):
+        li = []
+        for col in range(inputcol, inputrow-friezerow):
+            i,j = col, col+friezerow
+            if m.has_key((i,j)):
+                li.append(m[(i,j)])
+            else:
+                break
+        L.append(li)
+
+    ret = ""
+    for i,row in enumerate(L):
+        ret += ' '*i*2 + ' '.join('%3s'%x for x in row)
+        ret += '\n'
+
+    print ret[:-1]
+
+
+#print matrix(frieze_mat()).transpose()
 
 # sage: matrix(frieze_mat((2,1,3),inputrow=15)).transpose() # type A3

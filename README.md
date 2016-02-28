@@ -11,9 +11,40 @@ Otherwise, user specifies which row they would like to stop at.
 3. Alternatively, copy-all the frize.py file and paste into the terminal by typing %paste
 
 ### How to use from notebook or sage math cloud:
-Copy-all the frize.py file and paste 
+Copy-all the frize.py file and paste
 
-### Examples
+### Examples for viewing the frieze pattern the usual way
+sage: print_frieze((1,2,4,1,2,2,3),inputrow=14)
+  1   2   4   1   2   2   3   1   2   4   1   2   2
+    1   7   3   1   3   5   2   1   7   3   1   3
+      3   5   2   1   7   3   1   3   5   2   1
+        2   3   1   2   4   1   2   2   3   1
+          1   1   1   1   1   1   1   1   1
+            0   0   0   0   0   0   0   0
+
+sage: print_frieze((3,1,3),inputrow=20)
+  3   1   3   3   1   3   3   1   3   3   1   3   3   1   3   3   1   3   3
+    2   2   8   2   2   8   2   2   8   2   2   8   2   2   8   2   2   8
+      3   5   5   3   5   5   3   5   5   3   5   5   3   5   5   3   5
+        7   3   7   7   3   7   7   3   7   7   3   7   7   3   7   7
+          4   4  16   4   4  16   4   4  16   4   4  16   4   4  16
+            5   9   9   5   9   9   5   9   9   5   9   9   5   9
+             11   5  11  11   5  11  11   5  11  11   5  11  11
+                6   6  24   6   6  24   6   6  24   6   6  24
+                  7  13  13   7  13  13   7  13  13   7  13
+                   15   7  15  15   7  15  15   7  15  15
+                      8   8  32   8   8  32   8   8  32
+                        9  17  17   9  17  17   9  17
+                         19   9  19  19   9  19  19
+                           10  10  40  10  10  40
+                             11  21  21  11  21
+                               23  11  23  23
+                                 12  12  48
+                                   13  25
+                                     27
+
+
+### Examples for viewing the frieze pattern as a matrix (where the main diagonal gives the quiddity row)
 sage: matrix(frieze_mat((2,1,4,2,3),inputrow=15)).transpose() # From once-punctured pentagon trianguation
 
 [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
