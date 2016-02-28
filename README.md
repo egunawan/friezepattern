@@ -110,4 +110,10 @@ sage: matrix(frieze_mat((2,1,3),inputrow=15)).transpose() # type A3
 
 [0 0 0 0 0 0 0 0 0 0 0 1 2 1 1 1]
 
+### References:
+####2015:
+1. http://arxiv.org/abs/1504.02695
+2. http://arxiv.org/abs/1503.04352
 
+####1970s:
+http://www.link.cs.cmu.edu/15859-s11/notes/frieze-patterns-gazette.pdf
