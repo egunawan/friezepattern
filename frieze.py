@@ -59,7 +59,8 @@ def print_frieze(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8):
 
     ret = ""
     for i,row in enumerate(L):
-        ret += ' '*i*2 + ' '.join('%3s'%x for x in row)
+        #ret += ' '*i*2 + ' '.join('%3s'%x for x in row)
+        ret += ' '*i*2 + ' '.join("{:>3}".format(x) for x in row)
         ret += '\n'
 
     print ret[:-1]
