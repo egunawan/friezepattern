@@ -1,6 +1,6 @@
 
 
-def frieze_mat(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8):
+def frieze_mat(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8,flag_rectangle=True):
     """
     Return a dictionary of frieze patterns indexed by (i,j)
     following the convention of Baur-Parsons-Tschabold: Inifinite Friezes
@@ -13,9 +13,12 @@ def frieze_mat(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8):
     """
     n=len(quiddity_row)
     m=dict()
+
+    if flag_rectangle: # not working yet (I want to have a rectangle shape and not triangle)
+        inputrowplusextra = inputrow * 2
     # Fill in the 1s at position (2,1), (3,2), (4,3), until (inputrow,inputrow-1)
     # i.e. we fill in the "frieze row"=0
-    for col in range(2,inputrow+1):
+    for col in range(2,inputrowplusextra+1):
         if m.has_key((col,col-1)):
             raise ValueError('There is a bug. This key {} should not have been assigned.'.format((col,col-1)))
         m[(col,col-1)]=1
@@ -23,36 +26,45 @@ def frieze_mat(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8):
     # Fill in the values at position (1,1), (2,2), (3,3), until (inputrow,inputrow)
     # i.e. we fill in the quiddity row (repeated), the "frieze row" after the row of 1s.
     #print '\n'
-    for col in range(1,inputrow):
+
+    for col in range(1,inputrowplusextra):
         if m.has_key((col,col)):
             raise ValueError('There is a bug. This key {} should not have been assigned.'.format((col,col)))
         m[(col,col)]=quiddity_row[(col % n)-1] # Python index starts at 0, hence minus 1
         #print m[(col,col)]
     # Fill in the rest of the "frieze rows" below the quiddity row
     #print '\n'
-    for friezerow in range(1, inputrow-inputcol):
-        for col in range(inputcol,inputrow-friezerow):
+    for friezerow in range(1, inputrowplusextra-inputcol):
+        for col in range(inputcol,inputrowplusextra-friezerow):
             i,j=col,col+friezerow
             if m.has_key((i,j)):
                 raise ValueError('There is a bug. This key {} should not exist'.format((i,j)))
             if m[(i+1,j-1)]<1:
                 break
-            m[(i,j)] = (m[(i,j-1)]*m[(i+1,j)]-1)/m[(i+1,j-1)]
+            #print (i,(j-1)%n+1)
+            #print (i+1,j%n+1)
+            #print m.keys()
+            m[(i,j)] = (m[(i,(j-1))]*m[(i+1,j)]-1)/m[(i+1,(j-1))]
             #print m[(i,j)]
         if m[(inputcol,inputcol+friezerow)]<1:
             break
         #print '\n'
     return m
 
-def print_frieze(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8):
-    m = frieze_mat(quiddity_row,inputcol,inputrow)
+def print_frieze(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8,flag_rectangle=True):
+    m = frieze_mat(quiddity_row,inputcol,inputrow,flag_rectangle)
     L = []
+    ones = []
+    for k in range(0,inputrow-inputcol+1): # fill in 1s
+        ones.append(1)
+    L.append(ones)
     for friezerow in range(0,inputrow-inputcol):
         li = []
         for col in range(inputcol, inputrow-friezerow):
             i,j = col, col+friezerow
             if m.has_key((i,j)):
                 li.append(m[(i,j)])
+                #print m[(i,j)]
             else:
                 break
         L.append(li)
@@ -62,8 +74,12 @@ def print_frieze(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8):
         #ret += ' '*i*2 + ' '.join('%3s'%x for x in row)
         ret += ' '*i*2 + ' '.join("{:>3}".format(x) for x in row)
         ret += '\n'
+        if (i+1)%len(quiddity_row)==0:
+            ret += ' '*i*2 + '  '
+            ret += '--'*inputrow + '\n'
+        #ret +='\n'
 
-    print ret[:-1]
+    return ret[:-1]
 
 
 #print matrix(frieze_mat()).transpose()
