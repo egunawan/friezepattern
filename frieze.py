@@ -45,6 +45,8 @@ def frieze_mat(quiddity_row=(2,1,4,2,3),inputcol=1,inputrow=8,flag_rectangle=Tru
             #print (i+1,j%n+1)
             #print m.keys()
             m[(i,j)] = (m[(i,(j-1))]*m[(i+1,j)]-1)/m[(i+1,(j-1))]
+            if type(m[(i,j)]) == type(sqrt(2)):
+                m[(i,j)] = m[(i,j)].full_simplify()
             #print m[(i,j)]
         if m[(inputcol,inputcol+friezerow)]<1:
             break
