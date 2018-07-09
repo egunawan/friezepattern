@@ -12,7 +12,7 @@ Otherwise, user specifies which row they would like to stop at.
 3. Alternatively, copy-all the frize.py file and paste into the terminal by typing 
    `%paste`
 
-### How to use from notebook or sage math cloud:
+### How to use from notebook like Jupyter or sage math cloud (CoCalc):
     Copy-all the frize.py file and paste
 
 ### Examples for viewing the frieze pattern the usual way
