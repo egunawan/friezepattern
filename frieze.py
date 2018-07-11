@@ -1,4 +1,88 @@
-def frieze_mat3(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4, flag_rectangle=True):
+def frieze_dict_diag(diag = [1,1,1],width = 6):
+
+    n=len(diag) 
+    m=dict()
+    friezerow = n + 3
+    matrixwidth  = friezerow + width - 1
+    leftstart = 0
+
+   
+ # Fill in 0s at position (1,1), (2,2), (3,3), until (inputrow,inputrow)
+    # i.e. we fill in the quiddity row (repeated), the "frieze row" after the row of 1s.
+    #print '\n'
+
+    for col in range(matrixwidth+1):
+        if m.has_key((col,col)):
+            raise ValueError('There is a bug. This key {} should not have been assigned.'.format((col,col)))
+        m[(col,col)]=0
+    m[(0,n+3)] = 0
+    m[(n+3,0)] = 0
+
+    # Fill in the 1s at position (i,j) where |i - j| = 1 until (inputrow,inputrow +/- 1)
+    for col in range(1,matrixwidth+1):
+        if m.has_key((col,col-1)):
+            raise ValueError('There is a bug. This key {} should not have been assigned.'.format((col,col-1)))
+        m[(col,col-1)]=1
+        #print m[(col,col-1)]
+        #print (col,col-1)
+    for col in range(1,matrixwidth+1):
+        if m.has_key((col-1,col)):
+            raise ValueError('There is a bug. This key {} should not have been assigned.'.format((col-1,col)))
+        m[(col-1,col)]=1
+        #print m[(col-1,col)]
+	 #print (col-1, col)
+   
+    #Fill in diagonal of frieze in first row and column of matrix
+    for col in range(0,n):
+        if m.has_key((col+2,0)):
+	    raise ValueError('There is a bug. This key {} should not have been assigned.'.format((col+2,0)))
+        m[(col+2,0)]=diag[col]
+        #print m[(col+2,col)]
+        if m.has_key((0,col+2)):
+	    raise ValueError('There is a bug. This key {} should not have been assigned.'.format((0,col+2)))
+        m[(0,col+2)]=diag[col]
+        #print m[(col+2,col)]
+    m[(n+2,0)] = 1
+    m[(0,n+2)] = 1
+
+
+    # Fill in the rest of the "frieze rows" 
+    #print '\n'
+    for row in range(1,matrixwidth-friezerow+1):
+        m[(friezerow+row, row)] = 0
+        m[(row, friezerow+row)] = 0
+    for row in range(1, matrixwidth+1):
+    	for col in range(2,min(friezerow, matrixwidth-row+1)):
+            i,j=row,col+row
+            if m.has_key((i,j)):
+                raise ValueError('There is a bug. This key {} should not exist'.format((i,j)))
+            #if m[(i+1,j-1)]<1:
+                #break
+            print i,j
+            #print (i+1,j%n+1)
+            #print m.keys()
+            m[(i,j)] = (m[(i,(j-1))]*m[(i-1,j)]+1)/m[(i-1,(j-1))]
+            if type(m[(i,j)]) == type(sqrt(2)):
+                m[(i,j)] = m[(i,j)].full_simplify()
+            #print m[(i,j)]
+	for col in range(2,min(friezerow, matrixwidth - row + 1)):
+            i,j=col+row,row
+            if m.has_key((i,j)):
+                raise ValueError('There is a bug. This key {} should not exist'.format((i,j)))
+            #if m[(i-1,j+1)]<1:
+                #break
+            #print (i,(j-1)%n+1)
+            #print (i+1,j%n+1)
+            #print m.keys()
+            m[(i,j)] = (m[((i-1),j)]*m[(i,(j-1))]+1)/m[((i-1),(j-1))]
+            if type(m[(i,j)]) == type(sqrt(2)):
+                m[(i,j)] = m[(i,j)].full_simplify()
+            #print m[(i,j)]
+        #print '\n'
+    return m
+
+
+def frieze_dict_quid(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4, flag_rectangle=True):
     """
     def frieze_mat3(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4,   flag_rectangle=True)
     quiddity_row - give at least one complete period of the quiddity row of your frieze. The program assumes this periodicity. Give this as a list or a tuple.
@@ -22,6 +106,7 @@ def frieze_mat3(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4, 
     if leftstart < 0:
     	leftstart = Integer(mod(leftstart,n))    
     m=dict()
+    matrixwidth = friezerow + width
  #   inputcol = Integer(mod((leftstart + 1),n))
   #  print inputcol
 
@@ -101,13 +186,13 @@ def frieze_mat3(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4, 
     return m
 
 def print_frieze(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4,flag_rectangle=True):
-  """
-  def print_frieze(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4,flag_rectangle=True)
-  quiddity_row - give at least one complete period of the quiddity row of your frieze. The program assumes this periodicity. Give this as a list or a tuple.
+    """
+    def print_frieze(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4,flag_rectangle=True)
+    quiddity_row - give at least one complete period of the quiddity row of your frieze. The program assumes this periodicity. Give this as a list or a tuple.
     leftstart - Assuming the first entry of the inputted quiddity row exists at index (0,2), give i such that the leftmost quiddity row entry is (i,i+2).
     width - desired width of each row of the frieze 
     friezerow - The index of the last row we want in the frieze.
-	Note - if frieze row is greater than the total number of rows of the frieze pattern, the program will simply print the entire frieze pattern and nothing additional. 
+    Note - if frieze row is greater than the total number of rows of the frieze pattern, the program will simply print the entire frieze pattern and nothing additional. 
 
     We begin indexing the rows of our frieze pattern at the row of all 0’s, so
     the row of 0s is at “frieze row” = 0,
@@ -115,14 +200,14 @@ def print_frieze(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow = 4,
     and the quiddity row is at "frieze row"=2
 
     The purpose of this function is to output code that will display the frieze pattern. Use view(print_frieze()) to see the frieze. It should also work on Latex??
-  """
-    m = frieze_mat3(quiddity_row,leftstart,width,friezerow,flag_rectangle)
- #   Create a list with all the entries we will put into the frieze pattern.
+    """
+    m = frieze_dict_quid(quiddity_row,leftstart,width,friezerow,flag_rectangle)
+    #   Create a list with all the entries we will put into the frieze pattern.
     L = []
- #   ones = []
- #   for k in range(0,width): # fill in 1s
- #       ones.append(1)
-  #  L.append(ones)
+    #   ones = []
+    #   for k in range(0,width): # fill in 1s
+    #       ones.append(1)
+    #  L.append(ones)
     for row in range(0,friezerow):
         li = []
         for col in range(0, width):
