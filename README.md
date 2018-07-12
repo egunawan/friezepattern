@@ -1,9 +1,15 @@
 # friezepattern
-Return a frieze pattern (finite or infinite) by specifiying the quiddity row, that is, the row right after the row of all 0s and all 1s.
+Return a frieze pattern (finite or infinite) by specifiying the quiddity row , that is, the row right after the row of all 0s and all 1s, or a complete diagonal. Also gives options to customize the output. If the user inputs a quiddity row, he/she can specify which frieze row to print to, the width of the rows, and which quiddity row item should define the leftmost diagonal. If the user inputs a diagonal, he/she can specify the width of the rows. In this case, the program will print all the rows, at the desired width.
 
 ### Depending on the given quiddity row, the frieze will be finite or infinite.
+Computation checks whether the quiddity row is likely to produce a finite frieze. However, this method is not perfect. For example, it will print a message if you input quiddity row [3,1] or [3,1,3,1] but not if you input a quiddity row [3,1,3,1,3,1]. This is because we can find a polygon triangulation of a hexagon such that the number of triangles at each vertex, ordered in a cyclic way, is 3,1,3,1,3,1, but we cannot do this for a quadrilateral, and we cannot even triangulate a bigon. 
+
 If a "frieze row" contains a zero, the computation stops there.
 Otherwise, user specifies which row they would like to stop at.
+
+### Depending on the given diagonal, the frieze may contain (non-integer) rational numbers.
+Computation checks whether this will be the case.
+Note that the function assumes the user did not include the 1's from the border rows in the diagonal.
 
 ### How to use from terminal:
 1. Open Sage in terminal.
