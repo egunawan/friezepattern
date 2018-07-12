@@ -88,6 +88,15 @@ sage: matrix(frieze_mat((2,1,3),inputrow=15)).transpose() # type A3
     [0 0 0 0 0 0 0 0 0 0 1 3 5 2 1 0]
     [0 0 0 0 0 0 0 0 0 0 0 1 2 1 1 1]
 
+
+sage: print_frieze(inputtype='diag',input_row = [1,1,1],width = 6)
+
+sage: print_frieze(inputtype='diag',input_row = [1,2,1],width = 6)
+
+sage: print_frieze(inputtype='diag',input_row = [1,5,2],width = 6)
+This is not the diagonal of a positive integer frieze pattern. Recheck position 0
+This is not the diagonal of a positive integer frieze pattern. Recheck position 3
+
 ### References:
 ####2015:
 1. http://arxiv.org/abs/1504.02695
