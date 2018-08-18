@@ -1,4 +1,7 @@
 from math import sqrt
+from sage.matrix.all import matrix
+from sage.misc.functional import det
+
 def frieze_dict_diag(diag = [1,1,1],width = 6):
     """
     def frieze_dict_diag(diag = [1,1,1],width = 6)
@@ -33,7 +36,7 @@ def frieze_dict_diag(diag = [1,1,1],width = 6):
     	print(' This is not the diagonal of a positive integer frieze pattern. Recheck position {}'.format(n))
 
    
- # Fill in 0s at position (1,1), (2,2), (3,3), until (inputrow,inputrow)
+    # Fill in 0s at position (1,1), (2,2), (3,3), until (inputrow,inputrow)
     # i.e. we fill in the quiddity row (repeated), the "frieze row" after the row of 1s.
     #print '\n'
 
@@ -111,10 +114,9 @@ def frieze_dict_quid(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow 
     WARNING - inputting 0's or a mix of positive and negative integers may result in a computation that involves dividing by 0.
     
     Return a dictionary of frieze patterns indexed by (i,j)
-    following the convention of Gunawan-Musiker-Volgel: Cluster Algebraic Interpretations of Inifinite Friezes
+    following the convention of Gunawan-Musiker-Volgel: Cluster Algebraic Interpretations of Infinite Friezes
     
     To view as matrix, as in Bessenrodt-Holm-Jorgensen, use matrix(frieze_dict_quid())
-
 
     """
     n=len(quiddity_row)
@@ -122,8 +124,6 @@ def frieze_dict_quid(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow 
     	leftstart = Integer(mod(leftstart,n))    
     m=dict()
     matrixwidth = friezerow + width+1
-
-  
   
    #Check whether quiddity row could produce finite frieze pattern, using check as in Morier-Genoud's paper https://arxiv.org/abs/1503.05049 although originally in Coxeter's original frieze pattern paper.
    #We make continuants in terms of quiddity row entries. Given a quiddity sequence of length n, These will check whether rows n-1 and n are boundary rows. 
