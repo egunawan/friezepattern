@@ -1,3 +1,4 @@
+from math import sqrt
 def frieze_dict_diag(diag = [1,1,1],width = 6):
     """
     def frieze_dict_diag(diag = [1,1,1],width = 6)
@@ -28,7 +29,7 @@ def frieze_dict_diag(diag = [1,1,1],width = 6):
     for i in range(n-2):
         if (diag[i+2] + diag[i]) % diag[i+1] != 0:
             print(' This is not the diagonal of a positive integer frieze pattern. Recheck position {}'.format(i))
-    if (diag[n-1] + 1)% diag[n-2] != 0:
+    if (1+diag[n-2])% diag[n-1] != 0:
     	print(' This is not the diagonal of a positive integer frieze pattern. Recheck position {}'.format(n))
 
    
