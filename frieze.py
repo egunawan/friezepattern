@@ -102,8 +102,8 @@ def frieze_dict_quid(quiddity_row=(2,1,4,2,3),leftstart = 0,width = 5,friezerow 
     width - desired width of each row of the frieze when passing to the print feature
     friezerow - The index of the last row we want in the frieze.
 
-    We begin indexing the rows of our frieze pattern at the row of all 0‚Äôs, so
-    the row of 0s is at "Äúfrieze row"Äù = 0,
+    We begin indexing the rows of our frieze pattern at the row of all 0's, so
+    the row of 0s is at "frieze row" = 0,
     the row of 1s is at "frieze row" = 1
     and the quiddity row is at "frieze row"=2
     
@@ -227,7 +227,7 @@ def print_frieze(inputtype = 'quid', input_row=(2,1,4,2,3),leftstart = 0,width =
     friezerow - Only applicable if inputtype = 'quid'. The index of the last row we want in the frieze. Note we consider the quiddity row to be friezerow = 2.
     Note - if frieze row is greater than the total number of rows of the frieze pattern, the program will simply print the entire frieze pattern and nothing additional. 
 
-    We begin indexing the rows of our frieze pattern at the row of all 0‚Äôs, so
+    We begin indexing the rows of our frieze pattern at the row of all 0's, so
     the row of 0s is at "frieze row" = 0,
     the row of 1s is at "frieze row" = 1
     and the quiddity row is at "frieze row"=2
