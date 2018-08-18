@@ -236,7 +236,7 @@ def print_frieze(inputtype = 'quid', input_row=(2,1,4,2,3),leftstart = 0,width =
     """
     if inputtype == 'quid' or inputtype == 'quiddity':
         m = frieze_dict_quid(input_row,leftstart,width,friezerow,flag_rectangle)
-    elif inputtype == 'diag' or inputtype == 'diaganol':
+    elif inputtype == 'diag' or inputtype == 'diagonal':
         m = frieze_dict_diag(input_row, width)
         friezerow = len(input_row) + 4
     else:
