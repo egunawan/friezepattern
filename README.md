@@ -1,3 +1,18 @@
+# How to use the frieze code from a browser
+
+* To the Jupyter (interactive) worksheet directly, please click the following Binder Launch button:
+
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/egunawan/friezepattern/master?filepath=examples.ipynb)
+
+
+* To the entire repo, please click the following Binder Launch button:
+
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/egunawan/friezepattern/master)
+
+
+The rest of the readme needs to be updated.
+
+
 # friezepattern
 Return a frieze pattern (finite or infinite) by specifiying the quiddity row , that is, the row right after the row of all 0s and all 1s, or a complete diagonal. Also gives options to customize the output. If the user inputs a quiddity row, he/she can specify which frieze row to print to, the width of the rows, and which quiddity row item should define the leftmost diagonal. If the user inputs a diagonal, he/she can specify the width of the rows. In this case, the program will print all the rows, at the desired width.
 
