@@ -259,8 +259,8 @@ def print_frieze(inputtype = 'quid', input_row=(2,1,4,2,3),leftstart = 0,width =
             else:
                 break
         L.append(li)
-    for i in range(len(L)):
-        print('  '*i, L[i])
+    #for i in range(len(L)):
+    #    print('  '*i, L[i])
 
     ret = ""
     for i,row in enumerate(L):
