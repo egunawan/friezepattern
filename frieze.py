@@ -28,12 +28,12 @@ def frieze_dict_diag(diag = [1,1,1],width = 6):
     leftstart = 0
     
     if (diag[1] + 1)% diag[0] != 0:
-    	print(' This is not the diagonal of a positive integer frieze pattern. Recheck position 0')
+        print(' This is not the diagonal of a positive integer frieze pattern. Recheck position 0')
     for i in range(n-2):
         if (diag[i+2] + diag[i]) % diag[i+1] != 0:
             print(' This is not the diagonal of a positive integer frieze pattern. Recheck position {}'.format(i))
     if (1+diag[n-2])% diag[n-1] != 0:
-    	print(' This is not the diagonal of a positive integer frieze pattern. Recheck position {}'.format(n))
+        print(' This is not the diagonal of a positive integer frieze pattern. Recheck position {}'.format(n))
 
    
     # Fill in 0s at position (1,1), (2,2), (3,3), until (inputrow,inputrow)
